@@ -17,3 +17,7 @@ include: "*.dashboard.lookml"  # include all dashboards in this project
 # }
 
 explore:  battle {}
+explore: character_death {}
+explore: character_death_detail {}
+explore: character_prediction {}
+explore: character_screentime {}
