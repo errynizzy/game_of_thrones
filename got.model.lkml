@@ -1,4 +1,4 @@
-connection: "lookerdata_publicdata_standard_sql"
+connection: "lookerdata_publicdata"
 
 include: "*.view.lkml"         # include all views in this project
 include: "*.dashboard.lookml"  # include all dashboards in this project
@@ -15,3 +15,9 @@ include: "*.dashboard.lookml"  # include all dashboards in this project
 #     sql_on: ${users.id} = ${orders.user_id}
 #   }
 # }
+
+explore:  battle {}
+explore: character_death {}
+explore: character_death_detail {}
+explore: character_prediction {}
+explore: character_screentime {}
