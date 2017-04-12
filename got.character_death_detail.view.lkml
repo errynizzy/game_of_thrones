@@ -24,6 +24,7 @@ view: character_death_detail {
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;
+    primary_key: yes
   }
 
   dimension: role {

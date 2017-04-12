@@ -129,6 +129,8 @@ view: character_prediction {
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;
+    primary_key: yes
+
   }
 
   dimension: num_dead_relations {

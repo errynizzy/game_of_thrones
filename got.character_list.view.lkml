@@ -1,4 +1,4 @@
-view: character_death {
+view: character_list {
   sql_table_name: GameOfThrones.character_death ;;
 
   dimension: allegiances {
@@ -54,6 +54,7 @@ view: character_death {
   dimension: name {
     type: string
     sql: ${TABLE}.Name ;;
+    primary_key: yes
   }
 
   dimension: nobility {

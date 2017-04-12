@@ -114,6 +114,7 @@ view: battle {
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;
+    primary_key: yes
   }
 
   dimension: note {
