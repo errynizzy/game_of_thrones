@@ -18,9 +18,14 @@ include: "*.dashboard.lookml"  # include all dashboards in this project
 
 explore: battle {
   view_label: "Game of Thrones Battles (TV)"
-  join: attacker_deaths {
-    from: character_list {}
-    sql_on: ${battle.attacker_king} = ${attacker_deaths.name} ;;
+  join: attackers {
+    from: character_prediction
+    sql_on: ${battle.attacker_king_id} = ${attackers.s_no};;
+    relationship: many_to_one
+  }
+  join: defenders {
+    from: character_prediction
+    sql_on: ${battle.defender_king_id} = ${defenders.s_no} ;;
     relationship: many_to_one
   }
 }
