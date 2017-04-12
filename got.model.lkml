@@ -34,12 +34,13 @@ explore: character_list {
     sql_on: ${character_death_detail.name} = ${character_list.name} ;;
     relationship: one_to_one
   }
-
+}
 
 #explore: character_prediction {}
+#explore: chracter_screentime {}
+#explore: chracter_detah_detail {}
 
 
-}
 
 # list of characters alive / dead in tv show compared to book
 # battles that killed the most characters in book vs. movie
