@@ -9,6 +9,7 @@ view: character_screentime {
   dimension: imdb_url {
     type: string
     sql: ${TABLE}.imdb_url ;;
+    hidden: yes
   }
 
   dimension: name {
@@ -19,6 +20,17 @@ view: character_screentime {
   dimension: portrayed_by_imdb_url {
     type: string
     sql: ${TABLE}.portrayed_by_imdb_url ;;
+    hidden: yes
+  }
+
+  dimension: actor_id {
+    type: number
+    sql: SUBSTR(${portrayed_by_imdb_url}, -8, 7) ;;
+  }
+
+  dimension: character_id {
+    type: number
+    sql: SUBSTR(${imdb_url}, -8, 7) ;;
   }
 
   dimension: portrayed_by_name {
