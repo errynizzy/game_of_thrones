@@ -168,7 +168,7 @@ view: character_prediction {
     sql: ${TABLE}.title ;;
   }
 
-  measure: count {
+  measure: character_count {
     type: count
     drill_fields: [name]
   }

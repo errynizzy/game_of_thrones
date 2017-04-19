@@ -1,24 +1,28 @@
-connection: "lookerdata_publicdata"
+connection: "lookerdata_publicdata_standard_sql"
 
 include: "*.view.lkml"         # include all views in this project
 include: "*.dashboard.lookml"  # include all dashboards in this project
 
-# # Select the views that should be a part of this model,
-# # and define the joins that connect them together.
+
+# explore: battle {
+#   label: "Game of Thrones Battles (Book)"
+#   description: "Chris Albon's 'The War of the Five Kings Dataset'"
 #
-# explore: order_items {
-#   join: orders {
-#     sql_on: ${orders.id} = ${order_items.order_id}
+#   join: attackers {
+#     from: character_prediction
+#     sql_on: ${battle.attacker_king_id} = ${attackers.s_no} ;;
+#     relationship: many_to_one
 #   }
-#
-#   join: users {
-#     sql_on: ${users.id} = ${orders.user_id}
+#   join: defenders {
+#     from: character_prediction
+#     sql_on: ${battle.defender_king_id} = ${defenders.s_no} ;;
+#     relationship: many_to_one
 #   }
-# }
 
 explore: battle {
   label: "Game of Thrones Battles (Book)"
   description: "Chris Albon's 'The War of the Five Kings Dataset'"
+
   join: attackers {
     sql_on: ${attackers.battle_number} = ${battle.battle_number} ;;
     relationship: one_to_many
@@ -41,6 +45,36 @@ explore: battle {
 }
 
 
+explore: character_prediction{
+  join: character_list {
+    view_label: "Character Death"
+    sql_on: ${character_prediction.name}=${character_list.name} ;;
+    relationship: one_to_one
+  }
+  join: character_death_detail {
+    view_label: "Character Death Details"
+    sql_on: ${character_list.name} = ${character_death_detail.name} ;;
+    relationship: one_to_one
+  }
+  join: battle_attacker {
+    from: battle
+    view_label: "Battles Started By"
+    type: full_outer
+    sql_on: (${character_prediction.s_no} = ${battle_attacker.attacker_king_id}) or false;;
+    relationship: one_to_many
+  }
+  join: battle_defender {
+    from: battle
+    view_label: "Battles Defended By"
+    type: full_outer
+    sql_on: ${character_prediction.s_no} = ${battle_defender.defender_king_id} or false ;;
+    relationship: one_to_many
+  }
+
+}
+
+
+# FULL OUTER JOIN products ON FALSE
 
 #explore: character_prediction {}
 #explore: chracter_screentime {}
