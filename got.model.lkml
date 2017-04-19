@@ -17,29 +17,30 @@ include: "*.dashboard.lookml"  # include all dashboards in this project
 # }
 
 explore: battle {
-  view_label: "Game of Thrones Battles (TV)"
+  label: "Game of Thrones Battles (Book)"
+  description: "Chris Albon's 'The War of the Five Kings Dataset'"
   join: attackers {
-    from: character_prediction
-    sql_on: ${battle.attacker_king_id} = ${attackers.s_no};;
+    sql_on: ${attackers.battle_number} = ${battle.battle_number} ;;
+    relationship: one_to_many
+  }
+  join: attacker_commander_detail {
+    from: character_list
+    view_label: "Attackers"
+    sql_on: ${attackers.attacker_commanders} = ${attacker_commander_detail.name} ;;
     relationship: many_to_one
   }
   join: defenders {
-    from: character_prediction
-    sql_on: ${battle.defender_king_id} = ${defenders.s_no} ;;
+    sql_on: ${defenders.battle_number} = ${battle.battle_number};;
+    relationship: one_to_many
+  }
+  join: defender_commander_detail {
+    from: character_list
+    sql_on: ${defenders.defender_commanders} = ${defender_commander_detail.name} ;;
     relationship: many_to_one
   }
 }
 
-explore: character_list {
-  join: character_screentime {
-    sql_on: ${character_list.name} = ${character_screentime.name} ;;
-    relationship: one_to_one
-  }
-  join:  character_death_detail {
-    sql_on: ${character_death_detail.name} = ${character_list.name} ;;
-    relationship: one_to_one
-  }
-}
+
 
 #explore: character_prediction {}
 #explore: chracter_screentime {}
