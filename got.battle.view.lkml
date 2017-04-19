@@ -23,9 +23,19 @@ view: battle {
       sql: ${TABLE}.attacker_king_id ;;
     }
 
+    dimension: major_death {
+      type: yesno
+      sql: ${TABLE}.major_death = 1 ;;
+    }
+
     dimension: defender_king_id {
       type: number
       sql: ${TABLE}.defender_king_id ;;
+    }
+
+    dimension: major_capture {
+      type: yesno
+      sql: ${TABLE}.major_capture = 1 ;;
     }
 
     dimension: attacker_king {
@@ -86,16 +96,6 @@ view: battle {
     dimension: battle_type {
       type: string
       sql: ${TABLE}.battle_type ;;
-    }
-
-    dimension: major_death {
-      type: number
-      sql: ${TABLE}.major_death ;;
-    }
-
-    dimension: major_capture {
-      type: number
-      sql: ${TABLE}.major_capture ;;
     }
 
     dimension: attacker_size {

@@ -78,7 +78,9 @@ explore: character_prediction{
 
 #explore: character_prediction {}
 #explore: chracter_screentime {}
-#explore: chracter_detah_detail {}
+explore: character_list {
+
+}
 
 
 
