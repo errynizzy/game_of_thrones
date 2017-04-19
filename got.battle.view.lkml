@@ -24,13 +24,13 @@ view: battle {
   }
 
   dimension: major_death {
-    type: number
-    sql: ${TABLE}.major_death ;;
+    type: yesno
+    sql: ${TABLE}.major_death = 1 ;;
   }
 
   dimension: major_capture {
     type: number
-    sql: ${TABLE}.major_capture ;;
+    sql: ${TABLE}.major_capture = 1 ;;
   }
 
   dimension: summer {
