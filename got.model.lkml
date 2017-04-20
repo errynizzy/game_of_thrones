@@ -73,14 +73,15 @@ explore: character_prediction{
 
 }
 
+explore: character_screentime {
+
+}
 
 # FULL OUTER JOIN products ON FALSE
 
 #explore: character_prediction {}
 #explore: chracter_screentime {}
-explore: character_list {
 
-}
 
 
 
