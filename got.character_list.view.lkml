@@ -26,6 +26,7 @@ view: character_list {
     sql: ${TABLE}.Book_of_Death ;;
   }
 
+
   dimension: second_book {
     label: "2. A Clash of Kings"
     type: number
@@ -43,11 +44,13 @@ view: character_list {
     sql: ${TABLE}.Death_Year ;;
   }
 
+
   dimension: fifth_book {
     label: "5. A Dance With Dragons"
     type: yesno
     sql: ${TABLE}.DwD = 1;;
     group_label: "Book Appearances"
+
   }
 
   dimension: fourth_book {
@@ -72,6 +75,7 @@ view: character_list {
 
     }
   }
+
 
   dimension: first_book_appearance {
     label: "1. A Game Of Thrones"
