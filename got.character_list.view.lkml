@@ -42,8 +42,19 @@ view: character_list {
   }
 
   dimension: gender {
-    type: number
-    sql: ${TABLE}.Gender ;;
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.Gender = 1 ;;
+        label: "Male"
+      }
+      when: {
+        sql: ${TABLE}.Gender = 0 ;;
+        label: "Female"
+      }
+      else: "Not Specified"
+
+    }
   }
 
   dimension: go_t {
