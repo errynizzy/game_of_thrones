@@ -29,6 +29,75 @@ view: character_list {
     description: "chapter character was introduced in"
   }
 
+  dimension: book_intro_chapter_normalized {
+    type: number
+    hidden: yes
+    sql:
+      CASE
+        WHEN ${first_book_of_appearance} = '1. A Game of Thrones' THEN ${book_intro_chapter}
+        WHEN ${first_book_of_appearance} = '2. A Clash of Kings' THEN 73 + ${book_intro_chapter}
+        WHEN ${first_book_of_appearance} = '3. A Storm of Swords' THEN 73 + 70 + ${book_intro_chapter}
+        WHEN ${first_book_of_appearance} = '4. A Feast of Crows' THEN 73 + 70 + 82 + ${book_intro_chapter}
+        WHEN ${first_book_of_appearance} = '5. A Dance With Dragons' THEN 73 + 70 + 82 + 46 + ${book_intro_chapter}
+        ELSE NULL
+      END ;;
+    description: "chapter character was introduced in"
+  }
+
+  dimension: intro_book_chapter_count {
+    type: number
+    hidden: yes
+    sql:
+      CASE
+        WHEN ${first_book_of_appearance} = '1. A Game of Thrones' THEN 73
+        WHEN ${first_book_of_appearance} = '2. A Clash of Kings' THEN 70
+        WHEN ${first_book_of_appearance} = '3. A Storm of Swords' THEN 82
+        WHEN ${first_book_of_appearance} = '4. A Feast of Crows' THEN 46
+        WHEN ${first_book_of_appearance} = '5. A Dance With Dragons' THEN 73
+        ELSE NULL
+      END ;;
+  }
+
+  dimension: death_book_chapter_count {
+    type: number
+    hidden: yes
+    sql:
+      CASE
+        WHEN ${book_of_death} = 1 THEN 73
+        WHEN ${book_of_death} = 2 THEN 70
+        WHEN ${book_of_death} = 3 THEN 82
+        WHEN ${book_of_death} = 4 THEN 46
+        WHEN ${book_of_death} = 5 THEN 73
+        ELSE NULL
+      END ;;
+  }
+
+  dimension: death_book_chapter_normalized {
+    type: number
+    hidden: yes
+    sql:
+      CASE
+        WHEN ${book_of_death} = 1 THEN ${death_chapter}
+        WHEN ${book_of_death} = 2 THEN 73 + ${death_chapter}
+        WHEN ${book_of_death} = 3 THEN 73 + 70 + ${death_chapter}
+        WHEN ${book_of_death} = 4 THEN 73 + 70 + 82 + ${death_chapter}
+        WHEN ${book_of_death} = 5 THEN 73 + 70 + 82 + 46 + ${death_chapter}
+        ELSE NULL
+      END ;;
+    description: "chapter character was killed in"
+  }
+
+  dimension: character_life_in_chapters {
+    type: number
+    sql: COALESCE(${death_book_chapter_normalized} - ${book_intro_chapter_normalized},(73+70+82+46+73-${book_intro_chapter_normalized})) ;;
+  }
+
+  measure: average_character_life_in_chapters {
+    type: average
+    sql: ${character_life_in_chapters} ;;
+    value_format_name: decimal_2
+  }
+
   dimension: book_of_death {
     type: number
     sql: ${TABLE}.Book_of_Death ;;
