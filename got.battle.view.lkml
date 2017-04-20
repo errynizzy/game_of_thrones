@@ -48,44 +48,52 @@ view: battle {
       sql: ${TABLE}.defender_king ;;
     }
 
-    dimension: attacker_1 {
+    dimension: attacker_house_1 {
       type: string
       sql: ${TABLE}.attacker_1 ;;
+      group_label: "Attacker Houses"
     }
 
-    dimension: attacker_2 {
+    dimension: attacker_house_2 {
       type: string
       sql: ${TABLE}.attacker_2 ;;
+      group_label: "Attacker Houses"
     }
 
-    dimension: attacker_3 {
+    dimension: attacker_house_3 {
       type: string
       sql: ${TABLE}.attacker_3 ;;
+      group_label: "Attacker Houses"
     }
 
-    dimension: attacker_4 {
+    dimension: attacker_house_4 {
       type: string
       sql: ${TABLE}.attacker_4 ;;
+      group_label: "Attacker Houses"
     }
 
-    dimension: defender_1 {
+    dimension: defender_house_1 {
       type: string
       sql: ${TABLE}.defender_1 ;;
+      group_label: "Defender Houses"
     }
 
-    dimension: defender_2 {
+    dimension: defender_house_2 {
       type: string
       sql: ${TABLE}.defender_2 ;;
+      group_label: "Defender Houses"
     }
 
-    dimension: defender_3 {
+    dimension: defender_house_3 {
       type: string
       sql: ${TABLE}.defender_3 ;;
+      group_label: "Defender Houses"
     }
 
-    dimension: defender_4 {
+    dimension: defender_house_4 {
       type: string
       sql: ${TABLE}.defender_4 ;;
+      group_label: "Defender Houses"
     }
 
     dimension: attacker_outcome {
@@ -163,14 +171,14 @@ view: battle {
         defender_king_id,
         attacker_king,
         defender_king,
-        attacker_1,
-        attacker_2,
-        attacker_3,
-        attacker_4,
-        defender_1,
-        defender_2,
-        defender_3,
-        defender_4,
+        attacker_house_1,
+        attacker_house_2,
+        attacker_house_3,
+        attacker_house_4,
+        defender_house_1,
+        defender_house_2,
+        defender_house_3,
+        defender_house_4,
         attacker_outcome,
         battle_type,
         major_death,
