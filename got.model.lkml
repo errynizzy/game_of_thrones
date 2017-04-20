@@ -46,8 +46,9 @@ explore: battle {
 
 
 explore: character_prediction{
+  label: "Chacter Predictions (Book)"
   join: character_list {
-    view_label: "Character Death"
+    view_label: "Character Death (Book)"
     sql_on: ${character_prediction.name}=${character_list.name} ;;
     relationship: one_to_one
   }
@@ -69,6 +70,7 @@ explore: character_prediction{
 }
 
 explore: character_screentime {
+  label: "Game of Thrones TV Series"
 join: char_name {
   sql_on: ${char_name.name} = ${character_screentime.name} ;;
   relationship: one_to_one
