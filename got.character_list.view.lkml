@@ -11,6 +11,11 @@ view: character_list {
     sql: ${TABLE}.Allegiances ;;
   }
 
+  dimension: total_house_allegiance {
+    type: string
+    sql: CASE WHEN ${TABLE}.Allegiances LIKE '%House%' THEN SUBSTR(${TABLE}.Allegiances, LENGTH("House "), LENGTH(${TABLE}.Allegiances)) ELSE ${TABLE}.Allegiances END ;;
+  }
+
   dimension: total_allegiance {
     type: string
     sql: CASE WHEN ${TABLE}.Allegiances
