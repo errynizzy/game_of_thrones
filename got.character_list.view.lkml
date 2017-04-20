@@ -9,6 +9,7 @@ view: character_list {
   dimension: allegiances {
     type: string
     sql: ${TABLE}.Allegiances ;;
+    description: "character house"
   }
 
   dimension: total_house_allegiance {
@@ -19,11 +20,13 @@ view: character_list {
   dimension: book_intro_chapter {
     type: number
     sql: ${TABLE}.Book_Intro_Chapter ;;
+    description: "chapter character was introduced in"
   }
 
   dimension: book_of_death {
     type: number
     sql: ${TABLE}.Book_of_Death ;;
+    description: "book character died in"
   }
 
 
@@ -37,11 +40,13 @@ view: character_list {
   dimension: death_chapter {
     type: number
     sql: ${TABLE}.Death_Chapter ;;
+    description: "chapter character died in"
   }
 
   dimension: death_year {
     type: number
     sql: ${TABLE}.Death_Year ;;
+    description: "year character died"
   }
 
 
@@ -88,11 +93,13 @@ view: character_list {
     type: string
     sql: ${TABLE}.Name ;;
     primary_key: yes
+    description: "character name"
   }
 
   dimension: nobility {
     type: yesno
     sql: ${TABLE}.Nobility = 1 ;;
+    description: "Is the character a nobel?"
   }
 
   dimension: third_book {
@@ -105,5 +112,6 @@ view: character_list {
   measure: count {
     type: count
     drill_fields: [name]
+    description: "number of characters"
   }
 }

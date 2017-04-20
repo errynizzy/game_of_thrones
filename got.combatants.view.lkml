@@ -20,12 +20,14 @@ view: attackers {
     type: string
     sql: ${TABLE}.name ;;
     hidden: yes
+    description: "name of battle"
   }
 
   dimension: battle_number {
     type: number
     sql: ${TABLE}.battle_number ;;
     hidden: yes
+    description: "unique id for the battle"
   }
 
   dimension:  pk_key {
@@ -33,12 +35,13 @@ view: attackers {
     sql: concat(${battle_name}, ${attacker_commanders}) ;;
     primary_key: yes
     hidden: yes
+    description: "unique primary key for purposes of generating the counts"
   }
 
   dimension: attacker_commanders {
     type: string
     sql: ${TABLE}.attacker_commanders ;;
-
+    description: "names of the commanders leading the attacking army"
   }
 #
 #   dimension: attacker_1 {
@@ -97,12 +100,14 @@ view: defenders {
     type: string
     sql: ${TABLE}.name ;;
     hidden: yes
+    description: "name of battle"
   }
 
   dimension: battle_number {
     type: number
     sql: ${TABLE}.battle_number ;;
     hidden: yes
+    description: "unique id for the battle"
   }
 
   dimension:  pk_key {
@@ -110,12 +115,13 @@ view: defenders {
     sql: concat(${battle_name}, ${defender_commanders}) ;;
     primary_key: yes
     hidden: yes
+    description: "primary key generated to make the counts work"
   }
 
   dimension: defender_commanders {
     type: string
     sql: ${TABLE}.defender_commanders ;;
-
+    description: "names of the commanders leading the attacking army"
   }
 
 #
@@ -145,5 +151,6 @@ view: defenders {
 
   measure: commander_count {
     type: count
+    description: "number of commanders"
   }
 }
