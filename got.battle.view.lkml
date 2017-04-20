@@ -144,6 +144,16 @@ view: battle {
 
     }
 
+    measure: count_robstark_defending {
+      type: count_distinct
+      sql: ${name} ;;
+      filters:
+        {
+          field: defender_king
+          value: "Robb Stark"
+      }
+    }
+
     set: detail {
       fields: [
         name,

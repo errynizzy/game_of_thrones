@@ -3,7 +3,7 @@ view: character_list {
 
   dimension: member_of_house {
     type: string
-    sql: CASE WHEN ${TABLE}.Allegiances LIKE '%House%' THEN SUBSTR(${TABLE}.Allegiances, LENGTH("House "), LENGTH(${TABLE}.Allegiances)) END ;;
+    sql: CASE WHEN ${TABLE}.Allegiances LIKE '%House%' THEN LTRIM(SUBSTR(${TABLE}.Allegiances, LENGTH("House "), LENGTH(${TABLE}.Allegiances))) END ;;
   }
 
   dimension: allegiances {
@@ -11,9 +11,10 @@ view: character_list {
     sql: ${TABLE}.Allegiances ;;
   }
 
-  dimension: total_allegiance {
+  dimension: total_house_allegiance {
     type: string
-    sql: CASE WHEN ${TABLE}.Allegiances
+    sql: CASE WHEN ${TABLE}.Allegiances LIKE '%House%' THEN LTRIM(SUBSTR(${TABLE}.Allegiances, LENGTH("House "), LENGTH(${TABLE}.Allegiances))) ELSE LTRIM(${TABLE}.Allegiances) END ;;
+  }
 
   dimension: book_intro_chapter {
     type: number

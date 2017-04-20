@@ -88,7 +88,7 @@ join: title {
 }
 join: name {
   sql_on: ${name.id} = ${cast_info.person_id} ;;
-  relationship: one_to_many
+  relationship: one_to_one
 }
 }
 
