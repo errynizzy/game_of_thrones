@@ -3,7 +3,7 @@ view: character_list {
 
   dimension: allegiances {
     type: string
-    sql: CASE WHEN ${TABLE}.Allegiances LIKE '%House%' THEN SUBSTR(character_list.Allegiances, LENGTH("House "), LENGTH(character_list.Allegiances)) ;;
+    sql: CASE WHEN ${TABLE}.Allegiances LIKE '%House%' THEN SUBSTR(character_list.Allegiances, LENGTH("House "), LENGTH(character_list.Allegiances)) END ;;
   }
 
   dimension: memeber_of_house {
