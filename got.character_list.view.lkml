@@ -12,6 +12,12 @@ view: character_list {
     description: "character house"
   }
 
+  dimension: allegiance_house_name {
+    type: string
+    sql: REPLACE(${TABLE}.Allegiances, 'House ', '') ;;
+    description: "character house"
+  }
+
   dimension: total_house_allegiance {
     type: string
     sql: CASE WHEN ${TABLE}.Allegiances LIKE '%House%' THEN LTRIM(SUBSTR(${TABLE}.Allegiances, LENGTH("House "), LENGTH(${TABLE}.Allegiances))) ELSE LTRIM(${TABLE}.Allegiances) END ;;
@@ -101,8 +107,20 @@ measure: count_alive {
     }
   }
 
+  dimension: first_book_of_appearance {
+    type: string
+    sql:
+      CASE
+        WHEN ${first_book} = 'Yes' THEN '1. A Game of Thrones'
+        WHEN ${second_book} = 'Yes' THEN '2. A Clash of Kings'
+        WHEN ${third_book} = 'Yes' THEN '3. A Storm of Swords'
+        WHEN ${fourth_book} = 'Yes' THEN '4. A Feast of Crows'
+        WHEN ${fifth_book} = 'Yes' THEN '5. A Dance With Dragons'
+        ELSE NULL
+      END ;;
+  }
 
-  dimension: first_book_appearance {
+  dimension: first_book {
     label: "1. A Game Of Thrones"
     type: yesno
     sql: ${TABLE}.GoT = 1 ;;
