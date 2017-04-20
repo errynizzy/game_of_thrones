@@ -1,15 +1,19 @@
 view: character_list {
   sql_table_name: GameOfThrones.character_death ;;
 
-  dimension: allegiances {
+  dimension: member_of_house {
     type: string
     sql: CASE WHEN ${TABLE}.Allegiances LIKE '%House%' THEN SUBSTR(${TABLE}.Allegiances, LENGTH("House "), LENGTH(${TABLE}.Allegiances)) END ;;
   }
 
-  dimension: memeber_of_house {
+  dimension: allegiances {
     type: string
-    sql:  ${TABLE}.Allegiances  ;;
+    sql: ${TABLE}.Allegiances ;;
   }
+
+  dimension: total_allegiance {
+    type: string
+    sql: CASE WHEN ${TABLE}.Allegiances
 
   dimension: book_intro_chapter {
     type: number
