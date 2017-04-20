@@ -29,6 +29,26 @@ view: character_list {
     description: "book character died in"
   }
 
+dimension: is_alive {
+  type: yesno
+  sql: ${book_of_death} is null ;;
+}
+
+measure: count_alive {
+  type: count
+  filters: {
+    field: is_alive
+    value: "yes"
+  }
+}
+
+  measure: count_dead {
+    type: count
+    filters: {
+      field: is_alive
+      value: "no"
+    }
+  }
 
   dimension: second_book {
     label: "2. A Clash of Kings"
