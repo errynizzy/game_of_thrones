@@ -51,11 +51,6 @@ explore: character_prediction{
     sql_on: ${character_prediction.name}=${character_list.name} ;;
     relationship: one_to_one
   }
-  join: character_death_detail {
-    view_label: "Character Death Details"
-    sql_on: ${character_list.name} = ${character_death_detail.name} ;;
-    relationship: one_to_one
-  }
   join: battle_attacker {
     from: battle
     view_label: "Battles Started By"
@@ -78,6 +73,11 @@ join: char_name {
   sql_on: ${char_name.name} = ${character_screentime.name} ;;
   relationship: one_to_one
 }
+  join: character_death_detail {
+    view_label: "Character Death Details"
+    sql_on: ${character_screentime.name} = ${character_death_detail.name} ;;
+    relationship: one_to_one
+  }
 join: cast_info {
   sql_on: ${cast_info.person_role_id} = ${char_name.id} ;;
   relationship: many_to_one
