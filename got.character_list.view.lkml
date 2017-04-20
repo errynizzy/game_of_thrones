@@ -111,11 +111,11 @@ measure: count_alive {
     type: string
     sql:
       CASE
-        WHEN ${first_book} = 'Yes' THEN '1. A Game of Thrones'
-        WHEN ${second_book} = 'Yes' THEN '2. A Clash of Kings'
-        WHEN ${third_book} = 'Yes' THEN '3. A Storm of Swords'
-        WHEN ${fourth_book} = 'Yes' THEN '4. A Feast of Crows'
-        WHEN ${fifth_book} = 'Yes' THEN '5. A Dance With Dragons'
+        WHEN ${first_book} is true THEN '1. A Game of Thrones'
+        WHEN ${second_book} is true THEN '2. A Clash of Kings'
+        WHEN ${third_book} is true THEN '3. A Storm of Swords'
+        WHEN ${fourth_book} is true THEN '4. A Feast of Crows'
+        WHEN ${fifth_book} is true THEN '5. A Dance With Dragons'
         ELSE NULL
       END ;;
   }
