@@ -83,7 +83,7 @@ view: character_list {
     sql: ${TABLE}.Nobility ;;
   }
 
-  dimension: so_s {
+  dimension: storm_of_swords {
     type: number
     sql: ${TABLE}.SoS ;;
   }
