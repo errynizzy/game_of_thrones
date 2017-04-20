@@ -24,6 +24,7 @@ explore: battle {
   description: "Chris Albon's 'The War of the Five Kings Dataset'"
 
   join: attackers {
+    view_label: "Attackers"
     sql_on: ${attackers.battle_number} = ${battle.battle_number} ;;
     relationship: one_to_many
   }
@@ -34,10 +35,12 @@ explore: battle {
     relationship: many_to_one
   }
   join: defenders {
+    view_label: "Defenders"
     sql_on: ${defenders.battle_number} = ${battle.battle_number};;
     relationship: one_to_many
   }
   join: defender_commander_detail {
+    view_label: "Defenders"
     from: character_list
     sql_on: ${defenders.defender_commanders} = ${defender_commander_detail.name} ;;
     relationship: many_to_one
