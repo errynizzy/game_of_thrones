@@ -25,7 +25,7 @@ view: character_list {
     sql: ${TABLE}.Book_of_Death ;;
   }
 
-  dimension: co_k {
+  dimension: clash_of_kings {
     type: number
     sql: ${TABLE}.CoK ;;
   }
@@ -40,12 +40,12 @@ view: character_list {
     sql: ${TABLE}.Death_Year ;;
   }
 
-  dimension: dw_d {
+  dimension: dance_with_dragons {
     type: number
     sql: ${TABLE}.DwD ;;
   }
 
-  dimension: ff_c {
+  dimension: feast_for_crows {
     type: number
     sql: ${TABLE}.FfC ;;
   }
@@ -66,7 +66,7 @@ view: character_list {
     }
   }
 
-  dimension: go_t {
+  dimension: game_of_thrones {
     type: number
     sql: ${TABLE}.GoT ;;
   }
