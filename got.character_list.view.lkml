@@ -52,8 +52,8 @@ measure: count_alive {
 
   dimension: second_book {
     label: "2. A Clash of Kings"
-    type: number
-    sql: ${TABLE}.CoK ;;
+    type: yesno
+    sql: ${TABLE}.CoK  = 1;;
     group_label: "Book Appearances"
   }
 
@@ -124,8 +124,8 @@ measure: count_alive {
 
   dimension: third_book {
     label: "3. A Storm of Swords"
-    type: number
-    sql: ${TABLE}.SoS ;;
+    type: yesno
+    sql: ${TABLE}.SoS = 1 ;;
     group_label: "Book Appearances"
   }
 
