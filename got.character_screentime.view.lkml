@@ -47,4 +47,11 @@ view: character_screentime {
     type: count
     drill_fields: [name, portrayed_by_name]
   }
-}
+  measure: total_screentime {
+    type: sum
+    sql: ${TABLE}.screentime ;;
+  }
+  measure: avg_screentime {
+    type: average
+   sql: ${TABLE}.screentime ;;
+}}
