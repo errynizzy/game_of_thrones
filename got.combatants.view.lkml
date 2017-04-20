@@ -87,7 +87,9 @@ view: attackers {
 }
 view: defenders {
   derived_table: {
-    sql: select SPLIT(defender_commander, ",") AS defender_commanders, * from GameOfThrones.battle ;;
+    sql:
+    WITH x AS (SELECT SPLIT(defender_commander,',')AS arr, *  from GameOfThrones.battle)
+    SELECT arr_item as defender_commanders, name, battle_number FROM x, UNNEST(arr) as arr_item ;;
     persist_for: "24 hours"
   }
 
