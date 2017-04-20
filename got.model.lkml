@@ -74,7 +74,22 @@ explore: character_prediction{
 }
 
 explore: character_screentime {
-
+join: char_name {
+  sql_on: ${char_name.name} = ${character_screentime.name} ;;
+  relationship: one_to_one
+}
+join: cast_info {
+  sql_on: ${cast_info.person_role_id} = ${char_name.id} ;;
+  relationship: many_to_one
+}
+join: title {
+  sql_on: ${cast_info.movie_id} = ${title.id} ;;
+  relationship: many_to_one
+}
+join: name {
+  sql_on: ${name.id} = ${cast_info.person_id} ;;
+  relationship: one_to_many
+}
 }
 
 # FULL OUTER JOIN products ON FALSE

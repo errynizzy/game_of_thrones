@@ -14,7 +14,6 @@ view: char_name {
 
   measure: count {
     type: count
-    approximate_threshold: 100000
     drill_fields: [id, name]
   }
 }
