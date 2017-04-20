@@ -26,9 +26,11 @@ view: character_list {
     sql: ${TABLE}.Book_of_Death ;;
   }
 
-  dimension: co_k {
+  dimension: second_book {
+    label: "2. A Clash of Kings"
     type: number
     sql: ${TABLE}.CoK ;;
+    group_label: "Book Appearances"
   }
 
   dimension: death_chapter {
@@ -41,14 +43,18 @@ view: character_list {
     sql: ${TABLE}.Death_Year ;;
   }
 
-  dimension: dw_d {
-    type: number
-    sql: ${TABLE}.DwD ;;
+  dimension: fifth_book {
+    label: "5. A Dance With Dragons"
+    type: yesno
+    sql: ${TABLE}.DwD = 1;;
+    group_label: "Book Appearances"
   }
 
-  dimension: ff_c {
-    type: number
-    sql: ${TABLE}.FfC ;;
+  dimension: fourth_book {
+    label: "4. A Feast of Crows"
+    type: yesno
+    sql: ${TABLE}.FfC = 1;;
+    group_label: "Book Appearances"
   }
 
   dimension: gender {
@@ -67,9 +73,11 @@ view: character_list {
     }
   }
 
-  dimension: go_t {
-    type: number
-    sql: ${TABLE}.GoT ;;
+  dimension: first_book_appearance {
+    label: "1. A Game Of Thrones"
+    type: yesno
+    sql: ${TABLE}.GoT = 1 ;;
+    group_label: "Book Appearances"
   }
 
   dimension: name {
@@ -79,13 +87,15 @@ view: character_list {
   }
 
   dimension: nobility {
-    type: number
-    sql: ${TABLE}.Nobility ;;
+    type: yesno
+    sql: ${TABLE}.Nobility = 1 ;;
   }
 
-  dimension: so_s {
+  dimension: third_book {
+    label: "3. A Storm of Swords"
     type: number
     sql: ${TABLE}.SoS ;;
+    group_label: "Book Appearances"
   }
 
   measure: count {
