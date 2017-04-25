@@ -57,8 +57,10 @@ view: character_screentime {
   measure: total_screentime {
     type: sum
     sql: ${TABLE}.screentime ;;
+    value_format_name: decimal_1
   }
   measure: avg_screentime {
     type: average
    sql: ${TABLE}.screentime ;;
+  value_format_name: decimal_0
 }}

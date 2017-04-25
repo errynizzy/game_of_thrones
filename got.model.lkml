@@ -102,6 +102,7 @@ join: name {
   relationship: one_to_one
 }
 }
+
 explore: character_list {
   join:  char_name {
     sql_on: ${char_name.name} = ${character_list.name} ;;
