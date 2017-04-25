@@ -1,4 +1,4 @@
-connection: "lookerdata_publicdata_standard_sql"
+connection: "lookerdata_publicdata"
 
 include: "*.view.lkml"         # include all views in this project
 include: "*.dashboard.lookml"  # include all dashboards in this project
@@ -82,7 +82,13 @@ join: char_name {
     view_label: "Character Death Details"
     sql_on: ${character_screentime.name} = ${character_death_detail.name} ;;
     relationship: many_to_one
-  }
+}
+  join: character_list {
+    view_label: "Book Character Details"
+    sql_on: ${character_screentime.name} = ${character_list.name} ;;
+    relationship: many_to_one
+    fields: [character_list.gender]
+}
 join: cast_info {
   sql_on: ${cast_info.person_role_id} = ${char_name.id} ;;
   relationship: many_to_one
