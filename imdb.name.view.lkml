@@ -9,7 +9,23 @@ view: name {
 
   dimension: gender {
     type: string
-    sql: ${TABLE}.gender ;;
+    case: {
+      when: {
+        sql: ${gender_base} = "m" OR ${gender_base} = "Male";;
+        label: "Male"
+      }
+      when: {
+        sql: ${gender_base} = "f" OR ${gender_base} = "Female" ;;
+        label: "Female"
+      }
+      else: "Not Specified"
+    }
+  }
+
+  dimension: gender_base {
+    type: string
+    sql: CASE WHEN ${TABLE}.gender IS NULL THEN ${character_list.gender} ELSE ${TABLE}.gender END ;;
+    hidden: yes
   }
 
   dimension: ignore1 {
