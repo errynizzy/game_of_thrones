@@ -87,7 +87,7 @@ join: char_name {
     view_label: "Book Character Details"
     sql_on: ${character_screentime.name} = ${character_list.name} ;;
     relationship: many_to_one
-    fields: [character_list.gender]
+    fields: [character_list.gender, character_list.nobility]
 }
 join: cast_info {
   sql_on: ${cast_info.person_role_id} = ${char_name.id} ;;

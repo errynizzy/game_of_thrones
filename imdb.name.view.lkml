@@ -22,6 +22,13 @@ view: name {
     }
   }
 
+  dimension: gender_number {
+    type: number
+    sql:
+      CASE WHEN ${gender} = "Male" THEN 0 ELSE 1 END
+    ;;
+  }
+
   dimension: gender_base {
     type: string
     sql: CASE WHEN ${TABLE}.gender IS NULL THEN ${character_list.gender} ELSE ${TABLE}.gender END ;;
@@ -47,4 +54,9 @@ view: name {
     type: count
     drill_fields: [id, name]
   }
+
+  measure: gender_m {
+    type: average
+    sql:${gender_number}  ;;
+}
 }
