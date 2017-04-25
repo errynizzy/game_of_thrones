@@ -2,7 +2,7 @@ view: character_death_detail {
   sql_table_name: GameOfThrones.character_death_detail ;;
 
   dimension: death_episode {
-    type: number
+    type: string
     sql: ${TABLE}.death_episode ;;
   }
 
