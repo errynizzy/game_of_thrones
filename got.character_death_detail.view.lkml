@@ -14,7 +14,7 @@ view: character_death_detail {
 
   dimension: death_season {
     type: number
-    sql: ${TABLE}.death_season ;;
+    sql: CAST(${TABLE}.death_season as integer) ;;
   }
 
   dimension: execution {
