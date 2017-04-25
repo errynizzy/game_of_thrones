@@ -4,6 +4,12 @@ view: character_death_detail {
   dimension: death_episode {
     type: string
     sql: ${TABLE}.death_episode ;;
+    order_by_field: death_episode_number
+  }
+
+  dimension: death_episode_number {
+    type: number
+    sql: CAST(${TABLE}.death_episode as integer);;
   }
 
   dimension: death_season {
