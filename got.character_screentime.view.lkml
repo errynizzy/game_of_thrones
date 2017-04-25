@@ -1,5 +1,12 @@
 view: character_screentime {
-  sql_table_name: GameOfThrones.character_screentime ;;
+  derived_table: {
+    sql: SELECT *
+    , INTEGER(SUBSTR(GameOfThrones.character_screentime.imdb_url, -8, 7)) as character_id
+    , INTEGER(SUBSTR(GameOfThrones.character_screentime.portrayed_by_imdb_url, -8, 7)) as actor_id
+      from  GameOfThrones.character_screentime ;;
+
+    persist_for: "24 hours"
+  }
 
   dimension: episodes {
     type: string
@@ -25,12 +32,12 @@ view: character_screentime {
 
   dimension: actor_id {
     type: number
-    sql: SUBSTR(${portrayed_by_imdb_url}, -8, 7) ;;
+    sql: ${TABLE}.actor_id ;;
   }
 
   dimension: character_id {
     type: number
-    sql: SUBSTR(${imdb_url}, -8, 7) ;;
+    sql: ${TABLE}.character_id ;;
   }
 
   dimension: portrayed_by_name {
