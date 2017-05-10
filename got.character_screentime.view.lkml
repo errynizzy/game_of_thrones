@@ -34,7 +34,7 @@ view: character_screentime {
   }
 
   dimension: episodes {
-    type: string
+    type: number
     sql: ${TABLE}.episodes ;;
   }
 
@@ -79,11 +79,14 @@ view: character_screentime {
     type: count
     drill_fields: [name, portrayed_by_name]
   }
+
   measure: total_screentime {
     type: sum
     sql: ${TABLE}.screentime ;;
+    value_format_name: decimal_1
   }
   measure: avg_screentime {
     type: average
    sql: ${TABLE}.screentime ;;
+  value_format_name: decimal_0
 }}

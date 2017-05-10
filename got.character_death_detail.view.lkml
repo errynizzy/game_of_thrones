@@ -2,13 +2,19 @@ view: character_death_detail {
   sql_table_name: GameOfThrones.character_death_detail ;;
 
   dimension: death_episode {
-    type: number
+    type: string
     sql: ${TABLE}.death_episode ;;
+    order_by_field: death_episode_number
+  }
+
+  dimension: death_episode_number {
+    type: number
+    sql: CAST(${TABLE}.death_episode as integer);;
   }
 
   dimension: death_season {
     type: number
-    sql: ${TABLE}.death_season ;;
+    sql: CAST(${TABLE}.death_season as integer) ;;
   }
 
   dimension: execution {
