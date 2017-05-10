@@ -3,6 +3,31 @@ view: character_screentime {
     sql: SELECT *
     , INTEGER(SUBSTR(GameOfThrones.character_screentime.imdb_url, -8, 7)) as character_id
     , INTEGER(SUBSTR(GameOfThrones.character_screentime.portrayed_by_imdb_url, -8, 7)) as actor_id
+    , CASE
+        WHEN GameOfThrones.character_screentime.name = "Petyr 'Littlefinger' Baelish"
+          THEN 'Petyr Baelish'
+        WHEN GameOfThrones.character_screentime.name = "Eddard 'Ned' Stark"
+          THEN 'Eddard Stark'
+        WHEN GameOfThrones.character_screentime.name = "Catelyn Stark"
+          THEN 'Catelyn Tully'
+        WHEN GameOfThrones.character_screentime.name = "Lord Varys"
+          THEN 'Varys'
+        WHEN GameOfThrones.character_screentime.name = "Stannis Baratheon"
+          THEN 'Eddard Stark'
+        WHEN GameOfThrones.character_screentime.name = "Sandor 'The Hound' Clegane"
+          THEN 'Sandor Clegane'
+        WHEN GameOfThrones.character_screentime.name = "Ramsay Bolton"
+          THEN 'Ramsay Snow'
+        WHEN GameOfThrones.character_screentime.name = "Grand Maester Pycelle"
+          THEN 'Pycelle'
+        WHEN GameOfThrones.character_screentime.name = "Maester Luwin"
+          THEN 'Luwin'
+        WHEN GameOfThrones.character_screentime.name = "Maester Aemon"
+          THEN 'Aemon Targaryen'
+        WHEN GameOfThrones.character_screentime.name = "Brynden 'Blackfish' Tully"
+          THEN 'Brynden Tully'
+      ELSE GameOfThrones.character_screentime.name
+      END as name_improved
       from  GameOfThrones.character_screentime ;;
 
     persist_for: "24 hours"
@@ -21,7 +46,7 @@ view: character_screentime {
 
   dimension: name {
     type: string
-    sql: ${TABLE}.name ;;
+    sql: ${TABLE}.name_improved ;;
   }
 
   dimension: portrayed_by_imdb_url {

@@ -1,5 +1,35 @@
 view: character_list {
-  sql_table_name: GameOfThrones.character_death ;;
+  derived_table: {
+    sql: SELECT *
+          , CASE
+              WHEN GameOfThrones.character_death.name = "Tormund"
+                THEN 'Tormund Giantsbane'
+              WHEN GameOfThrones.character_death.name = "Olenna Redwyne"
+                THEN 'Olenna Tyrell'
+              WHEN GameOfThrones.character_death.name = "Asha Greyjoy"
+                THEN 'Yara Greyjoy'
+              WHEN GameOfThrones.character_death.name = "Asha Greyjoy"
+                THEN 'Yara Greyjoy'
+              WHEN GameOfThrones.character_death.name = "Drogo"
+                THEN 'Khal Drogo'
+              WHEN GameOfThrones.character_death.name = "Aemon Targaryen (son of Maekar I)"
+                THEN 'Aemon Targaryen'
+              WHEN GameOfThrones.character_death.name = "Lysa Tully"
+                THEN 'Lysa Arryn'
+              WHEN GameOfThrones.character_death.name = "Balon Swann"
+                THEN 'Balon Greyjoy'
+              WHEN GameOfThrones.character_death.name = "Balon Swann"
+                THEN 'Balon Greyjoy'
+              WHEN GameOfThrones.character_death.name = "Robert Arryn"
+                THEN 'Robin Arryn'
+              WHEN GameOfThrones.character_death.name = "Robert Arryn"
+                THEN 'Robin Arryn'
+            ELSE GameOfThrones.character_death.name
+            END as name_improved
+            from  GameOfThrones.character_death ;;
+
+      persist_for: "24 hours"
+    }
 
   dimension: member_of_house {
     type: string
@@ -198,7 +228,7 @@ measure: count_alive {
 
   dimension: name {
     type: string
-    sql: ${TABLE}.Name ;;
+    sql: ${TABLE}.name_improved ;;
     primary_key: yes
     description: "character name"
   }
