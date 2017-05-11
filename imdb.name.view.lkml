@@ -23,6 +23,7 @@ view: name {
   }
 
   dimension: gender_number {
+    hidden: yes
     type: number
     sql:
       CASE WHEN ${gender} = "Male" THEN 0 ELSE 1 END
@@ -36,11 +37,13 @@ view: name {
   }
 
   dimension: ignore1 {
+    hidden: yes
     type: string
     sql: ${TABLE}.ignore1 ;;
   }
 
   dimension: ignore2 {
+    hidden: yes
     type: string
     sql: ${TABLE}.ignore2 ;;
   }
@@ -50,13 +53,14 @@ view: name {
     sql: ${TABLE}.name ;;
   }
 
+  measure: gender_m {
+    hidden: yes
+    type: average
+    sql:${gender_number}  ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [id, name]
   }
-
-  measure: gender_m {
-    type: average
-    sql:${gender_number}  ;;
-}
 }

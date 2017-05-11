@@ -4,20 +4,47 @@ include: "*.view.lkml"         # include all views in this project
 include: "*.dashboard.lookml"  # include all dashboards in this project
 
 
-# explore: battle {
-#   label: "Game of Thrones Battles (Book)"
-#   description: "Chris Albon's 'The War of the Five Kings Dataset'"
-#
-#   join: attackers {
-#     from: character_prediction
-#     sql_on: ${battle.attacker_king_id} = ${attackers.s_no} ;;
+
+explore: character_screentime {
+  label: "Game of Thrones TV Series"
+  join: char_name {
+    view_label: "Character Details"
+    sql_on: ${char_name.name} = ${character_screentime.name} ;;
+    relationship: many_to_one
+  }
+  join: character_prediction {
+    view_label: "Character Details"
+    sql_on: ${character_screentime.name} = ${character_prediction.name} ;;
+    relationship: one_to_one
+  }
+
+  join: character_death_detail {
+    view_label: "Character Death Details"
+    sql_on: ${character_screentime.name} = ${character_death_detail.name} ;;
+    relationship: many_to_one
+  }
+  join: character_list {
+    view_label: "Character Details"
+    sql_on: ${character_screentime.name} = ${character_list.name} ;;
+    relationship: many_to_one
+    fields: [character_list.gender, character_list.nobility]
+  }
+#   join: cast_info {
+#     sql_on: ${cast_info.person_role_id} = ${char_name.id} ;;
+#     relationship: many_to_one
+#     fields: []
+#   }
+#   join: title {
+#     sql_on: ${cast_info.movie_id} = ${title.id} ;;
 #     relationship: many_to_one
 #   }
-#   join: defenders {
-#     from: character_prediction
-#     sql_on: ${battle.defender_king_id} = ${defenders.s_no} ;;
-#     relationship: many_to_one
+#   join: name {
+#     view_label: "Character Details"
+#     sql_on: ${name.id} = ${cast_info.person_id} ;;
+#     relationship: one_to_one
 #   }
+}
+
 
 explore: battle {
   label: "Game of Thrones Battles (Book)"
@@ -49,6 +76,7 @@ explore: battle {
 
 
 explore: character_prediction{
+  view_label: "Characters"
   label: "Chacter Predictions (Book)"
   join: character_list {
     view_label: "Character Death (Book)"
@@ -72,52 +100,22 @@ explore: character_prediction{
 
 }
 
-explore: character_screentime {
-  label: "Game of Thrones TV Series"
-join: char_name {
-  sql_on: ${char_name.name} = ${character_screentime.name} ;;
-  relationship: many_to_one
-}
-  join: character_death_detail {
-    view_label: "Character Death Details"
-    sql_on: ${character_screentime.name} = ${character_death_detail.name} ;;
-    relationship: many_to_one
-}
-  join: character_list {
-    view_label: "Book Character Details"
-    sql_on: ${character_screentime.name} = ${character_list.name} ;;
-    relationship: many_to_one
-    fields: [character_list.gender, character_list.nobility]
-}
-join: cast_info {
-  sql_on: ${cast_info.person_role_id} = ${char_name.id} ;;
-  relationship: many_to_one
-}
-join: title {
-  sql_on: ${cast_info.movie_id} = ${title.id} ;;
-  relationship: many_to_one
-}
-join: name {
-  sql_on: ${name.id} = ${cast_info.person_id} ;;
-  relationship: one_to_one
-}
-}
 
-explore: character_list {
-  join:  char_name {
-    sql_on: ${char_name.name} = ${character_list.name} ;;
-    relationship: one_to_one
-  }
-  join:  name {
-    sql_on: ${char_name.id} = ${name.id} ;;
-    relationship: one_to_one
-  }
-  join: character_screentime {
-    sql_on: ${char_name.name} = ${character_screentime.name} ;;
-    relationship: one_to_one
-
-  }
-}
+# explore: character_list {
+#   join:  char_name {
+#     sql_on: ${char_name.name} = ${character_list.name} ;;
+#     relationship: one_to_one
+#   }
+#   join:  name {
+#     sql_on: ${char_name.id} = ${name.id} ;;
+#     relationship: one_to_one
+#   }
+#   join: character_screentime {
+#     sql_on: ${char_name.name} = ${character_screentime.name} ;;
+#     relationship: one_to_one
+#
+#   }
+# }
 
 # FULL OUTER JOIN products ON FALSE
 

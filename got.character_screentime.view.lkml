@@ -1,5 +1,6 @@
 view: character_screentime {
   derived_table: {
+    sql_trigger_value: select 1 ;;
     sql: SELECT *
     , INTEGER(SUBSTR(GameOfThrones.character_screentime.imdb_url, -8, 7)) as character_id
     , INTEGER(SUBSTR(GameOfThrones.character_screentime.portrayed_by_imdb_url, -8, 7)) as actor_id
@@ -30,7 +31,6 @@ view: character_screentime {
       END as name_improved
       from  GameOfThrones.character_screentime ;;
 
-    persist_for: "24 hours"
   }
 
   dimension: episodes {
@@ -45,6 +45,7 @@ view: character_screentime {
   }
 
   dimension: name {
+    primary_key: yes
     type: string
     sql: ${TABLE}.name_improved ;;
   }
@@ -56,11 +57,13 @@ view: character_screentime {
   }
 
   dimension: actor_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.actor_id ;;
   }
 
   dimension: character_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.character_id ;;
   }
@@ -85,6 +88,7 @@ view: character_screentime {
     sql: ${TABLE}.screentime ;;
     value_format_name: decimal_1
   }
+
   measure: avg_screentime {
     type: average
    sql: ${TABLE}.screentime ;;

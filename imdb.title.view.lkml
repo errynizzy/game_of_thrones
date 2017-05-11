@@ -12,7 +12,7 @@ view: title {
     sql: ${TABLE}.episode_nr ;;
   }
 
-  dimension: episode_of_id {
+  dimension: episode_id {
     type: number
     sql: ${TABLE}.episode_of_id ;;
   }

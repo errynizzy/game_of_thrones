@@ -1,6 +1,13 @@
 view: character_death_detail {
   sql_table_name: GameOfThrones.character_death_detail ;;
 
+  dimension: name {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.name ;;
+    primary_key: yes
+  }
+
   dimension: death_episode {
     type: string
     sql: ${TABLE}.death_episode ;;
@@ -25,12 +32,6 @@ view: character_death_detail {
   dimension: likelihood_of_return {
     type: number
     sql: ${TABLE}.likelihoodOfReturn ;;
-  }
-
-  dimension: name {
-    type: string
-    sql: ${TABLE}.name ;;
-    primary_key: yes
   }
 
   dimension: role {
