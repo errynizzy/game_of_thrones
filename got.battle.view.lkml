@@ -1,6 +1,62 @@
 view: battle {
   sql_table_name: GameOfThrones.battle ;;
 
+    filter: house {
+      type: string
+      suggestions: ["Frey", "Greyjoy", "Lannister", "Stark"]
+    }
+
+  dimension: is_house_in_battle {
+#     hidden: yes
+    type: yesno
+    sql: {% condition house %} ${attacker_house_1} {% endcondition %} OR
+      {% condition house %} ${defender_house_1} {% endcondition %}
+      ;;
+  }
+
+  measure: count_battles_house {
+    type: count
+    description: "The number of battles taking place for selected house."
+    filters: {
+      field: is_house_in_battle
+      value: "yes"
+    }
+  }
+
+  measure: total_battles_count {
+    type: count
+    description: "The number of battles taking place."
+  }
+
+  measure: percentage_of_battles_fought {
+    type: number
+    sql: ${count_battles_house}/NULLIF(${total_battles_count},0) ;;
+    value_format_name: percent_0
+  }
+
+
+
+    dimension: house_won {
+      hidden: yes
+      type: yesno
+      sql: ${is_house_in_battle}
+      and ${attacker_win} = 'win' ;;
+    }
+    measure: win_count {
+      type: sum
+      sql: case when ${house_won} then 1 else 0 end  ;;
+    }
+
+    measure: win_rate {
+      type: number
+      sql: ${win_count}/nullif(${count_battles_house},0) ;;
+      value_format_name: percent_0
+    }
+
+#   measure: total_attacker_wins {
+#     type: sum
+#     sql: case when ${attacker_win} = 'win' then 1 else 0 end ;;
+#   }
 
     dimension: name {
       type: string
@@ -161,11 +217,6 @@ view: battle {
       type: string
       sql: ${TABLE}.region ;;
       description: "The region where the battle takes place. "
-    }
-
-    measure: count {
-      type: count
-      description: "The number of battles taking place."
     }
 
     measure: count_robb_stark_defending {

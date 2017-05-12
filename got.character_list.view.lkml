@@ -1,34 +1,35 @@
 view: character_list {
   derived_table: {
+    sql_trigger_value: select 1 ;;
     sql: SELECT *
           , CASE
-              WHEN GameOfThrones.character_death.name = "Tormund"
+              WHEN name = "Tormund"
                 THEN 'Tormund Giantsbane'
-              WHEN GameOfThrones.character_death.name = "Olenna Redwyne"
+              WHEN name = "Olenna Redwyne"
                 THEN 'Olenna Tyrell'
-              WHEN GameOfThrones.character_death.name = "Asha Greyjoy"
+              WHEN name = "Asha Greyjoy"
                 THEN 'Yara Greyjoy'
-              WHEN GameOfThrones.character_death.name = "Asha Greyjoy"
+              WHEN name = "Asha Greyjoy"
                 THEN 'Yara Greyjoy'
-              WHEN GameOfThrones.character_death.name = "Drogo"
+              WHEN name = "Drogo"
                 THEN 'Khal Drogo'
-              WHEN GameOfThrones.character_death.name = "Aemon Targaryen (son of Maekar I)"
+              WHEN name = "Aemon Targaryen (son of Maekar I)"
                 THEN 'Aemon Targaryen'
-              WHEN GameOfThrones.character_death.name = "Lysa Tully"
+              WHEN name = "Lysa Tully"
                 THEN 'Lysa Arryn'
-              WHEN GameOfThrones.character_death.name = "Balon Swann"
+              WHEN name = "Balon Swann"
                 THEN 'Balon Greyjoy'
-              WHEN GameOfThrones.character_death.name = "Balon Swann"
+              WHEN name = "Balon Swann"
                 THEN 'Balon Greyjoy'
-              WHEN GameOfThrones.character_death.name = "Robert Arryn"
+              WHEN name = "Robert Arryn"
                 THEN 'Robin Arryn'
-              WHEN GameOfThrones.character_death.name = "Robert Arryn"
+              WHEN name = "Robert Arryn"
                 THEN 'Robin Arryn'
-            ELSE GameOfThrones.character_death.name
+            ELSE name
             END as name_improved
             from  GameOfThrones.character_death ;;
 
-      persist_for: "24 hours"
+#       persist_for: "24 hours"
     }
 
   dimension: member_of_house {

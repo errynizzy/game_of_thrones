@@ -1,33 +1,35 @@
 view: character_screentime {
   derived_table: {
     sql_trigger_value: select 1 ;;
-    sql: SELECT *
-    , INTEGER(SUBSTR(GameOfThrones.character_screentime.imdb_url, -8, 7)) as character_id
-    , INTEGER(SUBSTR(GameOfThrones.character_screentime.portrayed_by_imdb_url, -8, 7)) as actor_id
+    sql:
+
+    SELECT *
+    , CAST(SUBSTR(imdb_url, -8, 7) as int64) as character_id
+    , CAST(SUBSTR(portrayed_by_imdb_url, -8, 7) as int64) as actor_id
     , CASE
-        WHEN GameOfThrones.character_screentime.name = "Petyr 'Littlefinger' Baelish"
+        WHEN name = "Petyr 'Littlefinger' Baelish"
           THEN 'Petyr Baelish'
-        WHEN GameOfThrones.character_screentime.name = "Eddard 'Ned' Stark"
+        WHEN name = "Eddard 'Ned' Stark"
           THEN 'Eddard Stark'
-        WHEN GameOfThrones.character_screentime.name = "Catelyn Stark"
+        WHEN name = "Catelyn Stark"
           THEN 'Catelyn Tully'
-        WHEN GameOfThrones.character_screentime.name = "Lord Varys"
+        WHEN name = "Lord Varys"
           THEN 'Varys'
-        WHEN GameOfThrones.character_screentime.name = "Stannis Baratheon"
+        WHEN name = "Stannis Baratheon"
           THEN 'Eddard Stark'
-        WHEN GameOfThrones.character_screentime.name = "Sandor 'The Hound' Clegane"
+        WHEN name = "Sandor 'The Hound' Clegane"
           THEN 'Sandor Clegane'
-        WHEN GameOfThrones.character_screentime.name = "Ramsay Bolton"
+        WHEN name = "Ramsay Bolton"
           THEN 'Ramsay Snow'
-        WHEN GameOfThrones.character_screentime.name = "Grand Maester Pycelle"
+        WHEN name = "Grand Maester Pycelle"
           THEN 'Pycelle'
-        WHEN GameOfThrones.character_screentime.name = "Maester Luwin"
+        WHEN name = "Maester Luwin"
           THEN 'Luwin'
-        WHEN GameOfThrones.character_screentime.name = "Maester Aemon"
+        WHEN name = "Maester Aemon"
           THEN 'Aemon Targaryen'
-        WHEN GameOfThrones.character_screentime.name = "Brynden 'Blackfish' Tully"
+        WHEN name = "Brynden 'Blackfish' Tully"
           THEN 'Brynden Tully'
-      ELSE GameOfThrones.character_screentime.name
+      ELSE name
       END as name_improved
       from  GameOfThrones.character_screentime ;;
 

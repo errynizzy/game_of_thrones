@@ -3,17 +3,19 @@
 
 # select SPLIT(defender_commander, ",") AS defender_commanders, * from GameOfThrones.battle ;;
 
+explore: attackers {}
+
+
 
 
 view: attackers {
   derived_table: {
-    sql:
-    WITH x AS (SELECT SPLIT(attacker_commander,',')AS arr, *  from GameOfThrones.battle)
-    SELECT arr_item as attacker_commanders, name, battle_number FROM x, UNNEST(arr) as arr_item
-    ;;
+    sql_trigger_value: select 1 ;;
+      sql: WITH x AS (SELECT SPLIT(attacker_commander,',')AS arr, *  from GameOfThrones.battle)
+          SELECT arr_item as attacker_commanders, name, battle_number FROM x, UNNEST(arr) as arr_item
 
+       ;;
 
-    persist_for: "24 hours"
   }
 
   dimension: battle_name {
@@ -43,6 +45,8 @@ view: attackers {
     sql: ${TABLE}.attacker_commanders ;;
     description: "names of the commanders leading the attacking army"
   }
+
+
 #
 #   dimension: attacker_1 {
 #     type: string
@@ -90,10 +94,11 @@ view: attackers {
 }
 view: defenders {
   derived_table: {
+    sql_trigger_value: select 1 ;;
     sql:
     WITH x AS (SELECT SPLIT(defender_commander,',')AS arr, *  from GameOfThrones.battle)
     SELECT arr_item as defender_commanders, name, battle_number FROM x, UNNEST(arr) as arr_item ;;
-    persist_for: "24 hours"
+#     persist_for: "24 hours"
   }
 
   dimension: battle_name {

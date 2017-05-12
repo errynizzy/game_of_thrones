@@ -1,4 +1,4 @@
-connection: "lookerdata_publicdata"
+connection: "lookerdata_publicdata_standard_sql"
 
 include: "*.view.lkml"         # include all views in this project
 include: "*.dashboard.lookml"  # include all dashboards in this project
@@ -59,7 +59,7 @@ explore: battle {
     from: character_list
     view_label: "Attackers"
     sql_on: ${attackers.attacker_commanders} = ${attacker_commander_detail.name} ;;
-    relationship: many_to_one
+    relationship: one_to_one
   }
   join: defenders {
     view_label: "Defenders"
