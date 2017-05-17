@@ -3,7 +3,7 @@
 
 # select SPLIT(defender_commander, ",") AS defender_commanders, * from GameOfThrones.battle ;;
 
-explore: attackers {}
+# explore: attackers {}
 
 
 

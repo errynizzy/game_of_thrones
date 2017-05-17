@@ -3,8 +3,6 @@ connection: "lookerdata_publicdata_standard_sql"
 include: "*.view.lkml"         # include all views in this project
 include: "*.dashboard.lookml"  # include all dashboards in this project
 
-
-
 explore: character_screentime {
   label: "Game of Thrones TV Series"
   join: char_name {

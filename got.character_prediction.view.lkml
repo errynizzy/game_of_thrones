@@ -73,7 +73,7 @@ view: character_prediction {
 
   dimension: house {
     type: string
-    sql: ${TABLE}.house ;;
+    sql: REGEXP_REPLACE(${TABLE}.house, 'House', '') ;;
   }
 
   dimension: is_alive {

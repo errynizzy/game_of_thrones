@@ -8,6 +8,7 @@ view: char_name {
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
