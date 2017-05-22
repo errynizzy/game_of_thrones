@@ -77,6 +77,11 @@ view: battle {
       description: "A unique ID number for the battle."
     }
 
+    dimension: is_battle_test {
+      type: yesno
+      sql: ${battle_number} is not null;;
+    }
+
     dimension: attacker_king_id {
       type: number
       sql: ${TABLE}.attacker_king_id ;;
@@ -187,6 +192,17 @@ view: battle {
       type: number
       sql: ${TABLE}.defender_size ;;
       description: "The size of the defenders's force. No distinction is made between the types of soldiers such as cavalry and footmen."
+    }
+
+    dimension: battle_size_ratio {
+      type: number
+      sql: 1.0*${attacker_size}/nullif(${defender_size},0) ;;
+      value_format_name: decimal_2
+    }
+
+    dimension: was_size_advantage {
+      type: yesno
+      sql: ${defender_size} > 1.0 ;;
     }
 
     dimension: attacker_commander {

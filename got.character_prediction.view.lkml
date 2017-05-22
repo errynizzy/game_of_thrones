@@ -130,7 +130,7 @@ view: character_prediction {
     type: string
     sql: ${TABLE}.name ;;
     primary_key: yes
-
+    suggestions: ["Tyrion Lannister", "Jon Snow", "Daenerys Targaryen", "Cersei Lannister", "Sansa Stark",  "Arya Stark", "Jaime Lannister",  "Theon Greyjoy",  "Bran Stark", "Catelyn Tully",  "Tywin Lannister",  "Margaery Tyrell",  "Robb Stark", "Joffrey Baratheon",  "Ramsay Snow",  "Olenna Tyrell",  "Loras Tyrell", "Robert Baratheon", "Yara Greyjoy"]
   }
 
   dimension: num_dead_relations {
