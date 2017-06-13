@@ -73,7 +73,7 @@ view: battle {
 
     dimension: battle_number {
       type: number
-      sql: ${TABLE}.battle_number ;;
+      sql: CAST(${TABLE}.battle_number AS INT64) ;;
       description: "A unique ID number for the battle."
     }
 

@@ -16,12 +16,12 @@ view: character_death_detail {
 
   dimension: death_episode_number {
     type: number
-    sql: CAST(${TABLE}.death_episode as integer);;
+    sql: CAST(${TABLE}.death_episode as INT64);;
   }
 
   dimension: death_season {
     type: number
-    sql: CAST(${TABLE}.death_season as integer) ;;
+    sql: CAST(${TABLE}.death_season as INT64) ;;
   }
 
   dimension: execution {
