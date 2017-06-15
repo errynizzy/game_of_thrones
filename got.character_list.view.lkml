@@ -19,10 +19,6 @@ view: character_list {
                 THEN 'Lysa Arryn'
               WHEN name = "Balon Swann"
                 THEN 'Balon Greyjoy'
-              WHEN name = "Balon Swann"
-                THEN 'Balon Greyjoy'
-              WHEN name = "Robert Arryn"
-                THEN 'Robin Arryn'
               WHEN name = "Robert Arryn"
                 THEN 'Robin Arryn'
             ELSE name

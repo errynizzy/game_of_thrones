@@ -15,8 +15,6 @@ view: character_screentime {
           THEN 'Catelyn Tully'
         WHEN name = "Lord Varys"
           THEN 'Varys'
-        WHEN name = "Stannis Baratheon"
-          THEN 'Eddard Stark'
         WHEN name = "Sandor 'The Hound' Clegane"
           THEN 'Sandor Clegane'
         WHEN name = "Ramsay Bolton"
