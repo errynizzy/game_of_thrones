@@ -37,7 +37,10 @@ view: character_screentime {
 
   dimension: episodes {
     type: number
-    sql: ${TABLE}.episodes ;;
+    sql: CAST(CASE
+          WHEN ${TABLE}.episodes = "unspecified" THEN null
+          ELSE ${TABLE}.episodes
+          END AS INT64);;
   }
 
   dimension: imdb_url {
