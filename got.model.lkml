@@ -27,6 +27,15 @@ explore: character_screentime {
     relationship: many_to_one
     fields: [character_list.gender, character_list.nobility]
   }
+
+  join: screentime_all_seasons {
+    view_label: "Character Screentime"
+    sql_on: ${character_screentime.name} = ${screentime_all_seasons.character} ;;
+    relationship: one_to_one
+    fields: [screentime_all_seasons.season_1, screentime_all_seasons.season_2, screentime_all_seasons.season_3,
+      screentime_all_seasons.season_4, screentime_all_seasons.season_5, screentime_all_seasons.season_6]
+
+  }
 #   join: cast_info {
 #     sql_on: ${cast_info.person_role_id} = ${char_name.id} ;;
 #     relationship: many_to_one
