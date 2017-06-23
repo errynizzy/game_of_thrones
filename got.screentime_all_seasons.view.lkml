@@ -144,8 +144,17 @@ view: screentime_all_seasons {
     sql: (60*${season_6_minutes})+${season_6_seconds} ;;
   }
 
+  dimension: total_screentime_seconds {
+    type: number
+    sql: ${season_1_total_seconds_screentime} + ${season_2_total_seconds_screentime}
+    + ${season_3_total_seconds_screentime} + ${season_4_total_seconds_screentime} +
+    ${season_5_total_seconds_screentime} + ${season_6_total_seconds_screentime};;
+  }
+
   measure: count {
     type: count
     drill_fields: []
   }
+
+
 }
