@@ -5,6 +5,7 @@ include: "*.dashboard.lookml"  # include all dashboards in this project
 
 explore: character_screentime {
   label: "Game of Thrones TV Series"
+
   join: char_name {
     view_label: "Character Details"
     sql_on: ${char_name.name} = ${character_screentime.name} ;;
@@ -32,8 +33,6 @@ explore: character_screentime {
     view_label: "Character Screentime"
     sql_on: ${character_screentime.name} = ${screentime_all_seasons.character} ;;
     relationship: one_to_one
-    fields: [screentime_all_seasons.season_1, screentime_all_seasons.season_2, screentime_all_seasons.season_3,
-      screentime_all_seasons.season_4, screentime_all_seasons.season_5, screentime_all_seasons.season_6]
 
   }
 #   join: cast_info {
