@@ -186,9 +186,35 @@ view: screentime_all_seasons {
     sql: ${total_screentime_seconds} / 60 ;;
   }
 
+
   measure: count {
     type: count
     drill_fields: []
+    }
+
+  measure: season_1_total_minutes_max {
+    type: max
+    sql: ${season_1_total_minutes_screentime} ;;
+    }
+  measure: season_2_total_minutes_max {
+    type: max
+    sql: ${season_2_total_minutes_screentime} ;;
+    }
+  measure: season_3_total_minutes_max {
+    type: max
+    sql: ${season_3_total_minutes_screentime} ;;
+  }
+  measure: season_4_total_minutes_max {
+    type: max
+    sql: ${season_4_total_minutes_screentime} ;;
+  }
+  measure: season_5_total_minutes_max {
+    type: max
+    sql: ${season_4_total_minutes_screentime} ;;
+  }
+  measure: season_6_total_minutes_max {
+    type: max
+    sql: ${season_6_total_minutes_screentime} ;;
   }
 
 
