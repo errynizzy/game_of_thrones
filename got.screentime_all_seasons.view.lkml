@@ -29,6 +29,11 @@ view: screentime_all_seasons {
     sql: (60*${season_1_minutes})+${season_1_seconds} ;;
   }
 
+  dimension: season_1_total_minutes_screentime {
+    type: number
+    sql: ${season_1_total_seconds_screentime} / 60 ;;
+  }
+
   dimension: season_2_raw {
     type: string
     hidden: yes
@@ -50,6 +55,11 @@ view: screentime_all_seasons {
   dimension: season_2_total_seconds_screentime {
     type: number
     sql: (60*${season_2_minutes})+${season_2_seconds} ;;
+  }
+
+  dimension: season_2_total_minutes_screentime {
+    type: number
+    sql: ${season_2_total_seconds_screentime} / 60 ;;
   }
 
   dimension: season_3_raw {
@@ -75,6 +85,11 @@ view: screentime_all_seasons {
     sql: (60*${season_3_minutes})+${season_3_seconds} ;;
   }
 
+  dimension: season_3_total_minutes_screentime {
+    type: number
+    sql: ${season_3_total_seconds_screentime} / 60 ;;
+  }
+
   dimension: season_4_raw {
     type: string
     hidden: yes
@@ -96,6 +111,11 @@ view: screentime_all_seasons {
   dimension: season_4_total_seconds_screentime {
     type: number
     sql: (60*${season_4_minutes})+${season_4_seconds} ;;
+  }
+
+  dimension: season_4_total_minutes_screentime {
+    type: number
+    sql: ${season_4_total_seconds_screentime} / 60 ;;
   }
 
   dimension: season_5_raw {
@@ -121,6 +141,11 @@ view: screentime_all_seasons {
     sql: (60*${season_5_minutes})+${season_5_seconds} ;;
   }
 
+  dimension: season_5_total_minutes_screentime {
+    type: number
+    sql: ${season_5_total_seconds_screentime} / 60 ;;
+  }
+
   dimension: season_6_raw {
     type: string
     hidden: yes
@@ -144,11 +169,21 @@ view: screentime_all_seasons {
     sql: (60*${season_6_minutes})+${season_6_seconds} ;;
   }
 
+  dimension: season_6_total_minutes_screentime {
+    type: number
+    sql: ${season_6_total_seconds_screentime} / 60 ;;
+  }
+
   dimension: total_screentime_seconds {
     type: number
     sql: ${season_1_total_seconds_screentime} + ${season_2_total_seconds_screentime}
     + ${season_3_total_seconds_screentime} + ${season_4_total_seconds_screentime} +
     ${season_5_total_seconds_screentime} + ${season_6_total_seconds_screentime};;
+  }
+
+  dimension: total_screen_time_minutes {
+    type: number
+    sql: ${total_screentime_seconds} / 60 ;;
   }
 
   measure: count {
