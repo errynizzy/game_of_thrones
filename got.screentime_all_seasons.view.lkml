@@ -1,9 +1,41 @@
 view: screentime_all_seasons {
-  sql_table_name: GameOfThrones.screentime_all_seasons ;;
+  derived_table: {
+    sql_trigger_value: select 1 ;;
+    sql: SELECT *
+          , CASE
+              WHEN character = "Petyr 'Littlefinger' Baelish"
+                THEN 'Petyr Baelish'
+              WHEN character = "Eddard 'Ned' Stark"
+                THEN 'Eddard Stark'
+              WHEN character = "Catelyn Stark"
+                THEN 'Catelyn Tully'
+              WHEN character = "Varys"
+                THEN 'Lord Varys'
+              WHEN character = "Sandor Clegane"
+                THEN "Sandor 'The Hound' Clegane"
+              WHEN character = "Ramsay Stark"
+                THEN "Ramsay Bolton"
+              WHEN character = "Pycelle"
+                THEN "Grand Maester Pycelle"
+              WHEN character = "Luwin"
+                THEN "Maester Luwin"
+              WHEN character = "Aemon Targaryen"
+                THEN "Maester Aemon"
+              WHEN character = "Gregor Clegane"
+                THEN "Gregor 'The Mountain' Clegane"
+              WHEN character = "Brynden Tully"
+                THEN "  Brynden 'Blackfish' Tully"
+            ELSE character
+            END as character_name
+            from  GameOfThrones.screentime_all_seasons ;;
 
-  dimension: character {
+#       persist_for: "24 hours"
+    }
+
+  dimension: character_name {
     type: string
-    sql: ${TABLE}.character ;;
+    hidden:  yes
+    sql: ${TABLE}.character_name ;;
   }
 
   dimension: season_1_raw {

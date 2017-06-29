@@ -31,7 +31,7 @@ explore: character_screentime {
 
   join: screentime_all_seasons {
     view_label: "Character Screentime"
-    sql_on: ${character_screentime.name} = ${screentime_all_seasons.character} ;;
+    sql_on: ${character_screentime.name} = ${screentime_all_seasons.character_name} ;;
     relationship: one_to_one
 
   }
@@ -105,6 +105,13 @@ explore: character_prediction{
   }
 
 }
+
+# explore: screentime_all_seasons {
+#   join: character_screentime {
+#     type: full_outer
+#     sql_on: ${character_screentime.name} = ${screentime_all_seasons.character_name} ;;
+#   }
+# }
 
 
 # explore: character_list {
