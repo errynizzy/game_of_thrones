@@ -9,22 +9,23 @@ view: screentime_all_seasons {
                 THEN 'Eddard Stark'
               WHEN character = "Catelyn Stark"
                 THEN 'Catelyn Tully'
-              WHEN character = "Varys"
-                THEN 'Lord Varys'
-              WHEN character = "Sandor Clegane"
-                THEN "Sandor 'The Hound' Clegane"
               WHEN character = "Ramsay Stark"
-                THEN "Ramsay Bolton"
-              WHEN character = "Pycelle"
-                THEN "Grand Maester Pycelle"
-              WHEN character = "Luwin"
-                THEN "Maester Luwin"
-              WHEN character = "Aemon Targaryen"
-                THEN "Maester Aemon"
-              WHEN character = "Gregor Clegane"
-                THEN "Gregor 'The Mountain' Clegane"
-              WHEN character = "Brynden Tully"
-                THEN "  Brynden 'Blackfish' Tully"
+                THEN "Ramsay Snow"
+              WHEN character = "Lord Varys"
+                THEN "Varys"
+              WHEN character = "Sandor 'The Hound' Clegane"
+                THEN "Sandor Clegane"
+              WHEN character = "Ramsay Bolton"
+                THEN "Ramsay Snow"
+                WHEN character = "Grand Maester Pycelle"
+                THEN "Pycelle"
+              WHEN character = "Maester Luwin"
+                THEN "Luwin"
+              WHEN character = "Maester Aemon"
+                THEN "Aemon Targaryen"
+              WHEN character = "Gregor 'The Mountain' Clegane"
+                THEN "Gregor Clegane"
+
             ELSE character
             END as character_name
             from  GameOfThrones.screentime_all_seasons ;;
@@ -34,8 +35,7 @@ view: screentime_all_seasons {
 
   dimension: character_name {
     type: string
-    hidden:  yes
-    sql: ${TABLE}.character_name ;;
+    sql: TRIM(${TABLE}.character_name) ;;
   }
 
   dimension: season_1_raw {

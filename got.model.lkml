@@ -26,6 +26,7 @@ explore: character_screentime {
     view_label: "Character Details"
     sql_on: ${character_screentime.name} = ${character_list.name} ;;
     relationship: many_to_one
+    type: full_outer
     fields: [character_list.gender, character_list.nobility]
   }
 
@@ -107,11 +108,11 @@ explore: character_prediction{
 }
 
 # explore: screentime_all_seasons {
-#   join: character_screentime {
-#     type: full_outer
-#     sql_on: ${character_screentime.name} = ${screentime_all_seasons.character_name} ;;
-#   }
-# }
+#    join: character_screentime {
+#      type: full_outer
+#      sql_on: ${character_screentime.name} = ${screentime_all_seasons.character_name} ;;
+#    }
+#  }
 
 
 # explore: character_list {
