@@ -1,3 +1,114 @@
+view: screentime_by_season {
+  derived_table: {
+    sql: select 'Season 1' as season_number
+        , character
+        , season_1 as time_on_screen
+      from GameOfThrones.screentime_all_seasons
+
+      union all
+
+      select 'Season 2' as season_number
+        , character
+        , season_2 as time_on_screen
+      from GameOfThrones.screentime_all_seasons
+
+      union all
+
+      select 'Season 3' as season_number
+        , character
+        , season_3 as time_on_screen
+      from GameOfThrones.screentime_all_seasons
+
+      union all
+
+      select 'Season 4' as season_number
+        , character
+        , season_4 as time_on_screen
+      from GameOfThrones.screentime_all_seasons
+
+      union all
+
+      select 'Season 5' as season_number
+        , character
+        , season_5 as time_on_screen
+      from GameOfThrones.screentime_all_seasons
+
+      union all
+
+      select 'Season 6' as season_number
+        , character
+        , season_6 as time_on_screen
+      from GameOfThrones.screentime_all_seasons
+
+       ;;
+  }
+
+  measure: count {
+    type: count
+    drill_fields: [detail*]
+  }
+
+  dimension: season_number {
+    type: string
+    sql: ${TABLE}.season_number ;;
+  }
+
+  dimension: character {
+    type: string
+    sql:
+      CASE
+        WHEN ${TABLE}.character = "Petyr 'Littlefinger' Baelish"
+          THEN 'Petyr Baelish'
+        WHEN ${TABLE}.character = "Eddard 'Ned' Stark"
+          THEN 'Eddard Stark'
+        WHEN ${TABLE}.character = "Catelyn Stark"
+          THEN 'Catelyn Tully'
+        WHEN ${TABLE}.character = "Ramsay Stark"
+          THEN "Ramsay Snow"
+        WHEN ${TABLE}.character = "Lord Varys"
+          THEN "Varys"
+        WHEN ${TABLE}.character = "Sandor 'The Hound' Clegane"
+          THEN "Sandor Clegane"
+        WHEN ${TABLE}.character = "Ramsay Bolton"
+          THEN "Ramsay Snow"
+        WHEN ${TABLE}.character = "Grand Maester Pycelle"
+          THEN "Pycelle"
+        WHEN ${TABLE}.character = "Maester Luwin"
+          THEN "Luwin"
+        WHEN ${TABLE}.character = "Maester Aemon"
+          THEN "Aemon Targaryen"
+        WHEN ${TABLE}.character = "Gregor 'The Mountain' Clegane"
+          THEN "Gregor Clegane"
+        ELSE ${TABLE}.character
+      END;;
+  }
+
+  dimension: time_on_screen {
+    type: string
+    sql: ${TABLE}.time_on_screen ;;
+  }
+
+  dimension: on_screen_minutes {
+    type: number
+    sql: CAST(RPAD(${time_on_screen}, STRPOS(${time_on_screen}, ":")-1) AS INT64) ;;
+  }
+
+  measure: total_time_on_screen {
+    type: sum
+    sql: ${on_screen_minutes};;
+  }
+
+  measure: character_count {
+    type: count_distinct
+    sql: ${character} ;;
+  }
+
+  set: detail {
+    fields: [season_number, character, time_on_screen]
+  }
+}
+
+
 view: screentime_all_seasons {
   derived_table: {
     sql_trigger_value: select 1 ;;
@@ -207,6 +318,7 @@ view: screentime_all_seasons {
   }
 
   dimension: total_screentime_seconds {
+    hidden: yes
     type: number
     sql: ${season_1_total_seconds_screentime} + ${season_2_total_seconds_screentime}
     + ${season_3_total_seconds_screentime} + ${season_4_total_seconds_screentime} +
@@ -214,10 +326,10 @@ view: screentime_all_seasons {
   }
 
   dimension: total_screen_time_minutes {
+    hidden: yes
     type: number
     sql: ${total_screentime_seconds} / 60 ;;
   }
-
 
   measure: count {
     type: count
@@ -247,6 +359,10 @@ view: screentime_all_seasons {
   measure: season_6_total_minutes_max {
     type: max
     sql: ${season_6_total_minutes_screentime} ;;
+  }
+  measure: minutes_by_season {
+    type: sum
+    sql: ${season_1_total_minutes_screentime}+${season_2_total_minutes_screentime}+${season_3_total_minutes_screentime}+${season_4_total_minutes_screentime}+${season_5_total_minutes_screentime}+${season_6_total_minutes_screentime} ;;
   }
 
 

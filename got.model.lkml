@@ -3,6 +3,37 @@ connection: "lookerdata_publicdata_standard_sql"
 include: "*.view.lkml"         # include all views in this project
 include: "*.dashboard.lookml"  # include all dashboards in this project
 
+explore: screentime_by_season {
+
+  join: char_name {
+    view_label: "Character Details"
+    sql_on: ${screentime_by_season.character} = ${char_name.name};;
+    relationship: many_to_one
+  }
+
+  join: character_prediction {
+    view_label: "Character Details"
+    sql_on: ${screentime_by_season.character} = ${character_prediction.name} ;;
+    relationship: one_to_one
+  }
+
+  join: character_death_detail {
+    view_label: "Character Death Details"
+    sql_on: ${screentime_by_season.character} = ${character_death_detail.name} ;;
+    relationship: many_to_one
+  }
+
+  join: character_list {
+    view_label: "Character Details"
+    sql_on: ${screentime_by_season.character} = ${character_list.name} ;;
+    relationship: many_to_one
+    type: full_outer
+    fields: [character_list.gender, character_list.nobility]
+  }
+
+}
+
+
 explore: character_screentime {
   label: "Game of Thrones TV Series"
 
