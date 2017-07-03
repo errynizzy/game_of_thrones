@@ -242,7 +242,7 @@ view: screentime_all_seasons {
   }
   measure: season_5_total_minutes_max {
     type: max
-    sql: ${season_4_total_minutes_screentime} ;;
+    sql: ${season_5_total_minutes_screentime} ;;
   }
   measure: season_6_total_minutes_max {
     type: max
