@@ -33,8 +33,8 @@ view: character_screentime {
 
   }
 
-  dimension: episodes {
-    type: number
+  measure: episodes {
+    type: sum
     sql: CAST(CASE
           WHEN ${TABLE}.episodes = "unspecified" THEN null
           ELSE ${TABLE}.episodes
